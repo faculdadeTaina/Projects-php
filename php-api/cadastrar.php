@@ -27,19 +27,19 @@ if($dados){
    if($car_produto->rowCount()){
     $response=[
         "erro"=>false,
-        "messagem"=>"Produto cadastrado"
+        "mensagem"=>"Produto cadastrado"
     ];
    }else{
     $response=[
         "erro"=>true,
-        "messagem"=>"Produto não cadastrado"
+        "mensagem"=>"Produto não cadastrado"
     ];
    }
    
 }else{
     $response=[
         "erro"=>true,
-        "messagem"=>"Produto não cadastrado"
+        "mensagem"=>"Produto não cadastrado"
     ];
 }
 
