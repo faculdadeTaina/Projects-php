@@ -9,34 +9,52 @@ header("Access-Control-Allow-Headers: *");
 
 include_once 'conexao.php';
 
-include_once 'conexao.php';
-
 $response_json=file_get_contents("php://input");
 //lendo
  $dados= json_decode($response_json, true);
 
  if($dados){
-    "UPDATE produtos SET titulo :titulo, descricao:descricao WHERE id=:id";
- $edit_produto= $conn->prepare($query_produto);
+   //query
+$query_produto= "UPDATE produtos SET titulo=:titulo, descricao=:descricao WHERE id=:id";
+//instanciando
+$edit_produto= $conn->prepare($query_produto);
+//substituido
+$edit_produto->bindParam(':titulo',$dados['titulo'], PDO::PARAM_STR);
+$edit_produto->bindParam(':descricao',$dados['descricao'], PDO::PARAM_STR);
 
-$edit_produto
-  $response_json=[
-    "erro"=>false,
-    "messagem"=>"produto editado com sucesso",
-    "data"=>$dados
+$edit_produto->bindParam(':id', $dados['id'], PDO::PARAM_INT);
+
+$edit_produto->execute();
+
+if($edit_produto->rowCount()){
+   $response=[
+      "erro"=>false,
+      "messagem"=>"produto editado com sucesso"
+      //"data"=>$dados
+   ];
+
 }else{
-    $response_json=[
+   $response=[
+      "erro"=>false,
+      "messagem"=>"produto não editado com sucesso!!"
+      //"data"=>$dados
+   ];
+}
+
+}else{
+    $response=[
         "erro"=>false,
-        "messagem"=>"produto não editado com sucesso",
-        "data"=>$dados
+        "messagem"=>"produto não editado com sucesso!"
+        //"data"=>$dados
      ];
  }
- $response_json=[
+ //um array
+ /*$response=[
     "erro"=>false,
-    "messagem"=>"acesssoi",
+    "messagem"=>"",
     "data"=>$dados
- ];
+ ];*/
 
  http_response_code(200);
- echo json_encode($response_json);
-
+ //converte array em um objeto
+ echo json_encode($response);
