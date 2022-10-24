@@ -9,14 +9,16 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	    <script>
 
-	function requisitoFuncionado(){
+	function requisitoFuncionado(url){
 	let ajax=new XMLHttpRequest();
+	console.log(ajax.readyState);
+		
 		//disparando  metodos
-        alax.open('GET', 'pagina_1_conteudo.html');
+       ajax.open('GET', url);
 	//para fazer diparos
         ajax.send();
 		//verificarc como  la  se coposrta
-        //console.log(ajax);
+        console.log(ajax.readyState);
 		
 	}
         
