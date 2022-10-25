@@ -10,6 +10,13 @@
 	    <script>
 
 	function requisitoFuncionado(url){
+		//inlcuido	lood
+let	imgLoading=document.createElement('img');
+imgLoading.src='loading.gif'
+imgLoading.className='rounded	mx-auto	d-block'
+
+document.getElementById("conteudo").appendChild(imgLoading)
+
 	let ajax=new XMLHttpRequest();
 	console.log(ajax.readyState);
 		
@@ -19,7 +26,13 @@
         ajax.send();
 		//verificarc como  la  se coposrta
         console.log(ajax.readyState);
-		
+		ajax.onreadystatechange=()=>{
+		if(ajax.readyState==4){
+			console.log("Requisão	finalizada	com	sucesso")
+		}
+		}
+		ajax.send();
+
 	}
         
     </script>
@@ -58,7 +71,7 @@
 	    	<div class="row">
 		    	<div class="col-md-1"></div>
 
-		    	<div class="col-md-10">
+		    	<div class="col-md-10"	id="conteudo">
 		    		<!--carregado dinamicamente-->
 
 		    	</div>
